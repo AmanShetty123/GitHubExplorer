@@ -1,20 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import SearchScreen from './screens/SearchScreen';
+import RepositoryDetailsScreen from './screens/RepositoryDetailsScreen';
+import FavoritesScreen from './screens/FavouritesScreen';
 
-export default function App() {
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Search" component={SearchScreen} options={{
+          headerTitle: 'Github Repositories in One Place'
+        }} />
+        <Stack.Screen name="RepositoryDetails" component={RepositoryDetailsScreen} options={{headerTitle: 'Repository Details'}} />
+        <Stack.Screen name="Favorites" component={FavoritesScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
