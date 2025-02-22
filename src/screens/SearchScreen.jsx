@@ -4,8 +4,6 @@ import {
   FlatList,
   StyleSheet,
   TouchableOpacity,
-  ActivityIndicator,
-  NetInfo,
 } from 'react-native';
 import {
   Searchbar,
@@ -23,7 +21,7 @@ const SearchScreen = ({ navigation }) => {
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [errorType, setErrorType] = useState(null); // 'network', 'noResults', or 'other'
+  const [errorType, setErrorType] = useState(null);
 
   const checkInternetConnection = async () => {
     try {
@@ -41,7 +39,6 @@ const SearchScreen = ({ navigation }) => {
     setError(null);
     setErrorType(null);
 
-    // Check internet connection first
     const isConnected = await checkInternetConnection();
     if (!isConnected) {
       setError('No internet connection. Please check your network and try again.');
@@ -64,7 +61,6 @@ const SearchScreen = ({ navigation }) => {
       }
     } catch (error) {
       if (error.response) {
-        // Handle rate limiting
         if (error.response.status === 403) {
           setError('GitHub API rate limit exceeded. Please try again later.');
         } else {
@@ -138,7 +134,6 @@ const SearchScreen = ({ navigation }) => {
     );
   };
 
-  // Rest of the component remains the same...
   const renderRepository = ({ item }) => (
     <Card style={styles.card}>
       <TouchableOpacity
@@ -231,7 +226,6 @@ const SearchScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  // Previous styles remain the same...
   container: {
     flex: 1,
     backgroundColor: '#F5F6F8',

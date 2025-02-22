@@ -4,7 +4,7 @@ import { Button, Card, Divider, Surface } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const RepositoryDetailsScreen = ({ route, navigation }) => {
+const RepositoryDetailsScreen = ({ route}) => {
   const { repo } = route.params;
 
   const addToFavorites = async () => {
